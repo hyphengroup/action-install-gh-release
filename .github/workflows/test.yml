@@ -50,3 +50,25 @@ jobs:
           repo: pulumi/tf2pulumi
           arch: x64
       - run: tf2pulumi version
+  go-cag:
+    strategy:
+      matrix:
+        version: ["v2.0.0", "latest"]
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: actions/checkout@v1
+      - run: npm ci
+      - run: npm run build
+      - name: Generate download token
+        id: generate_token
+        uses: tibdex/github-app-token@v1
+        with:
+          app_id: ${{ secrets.AUTH_FOR_BINARY_GITHUB_APP_ID }}
+          private_key: ${{ secrets.AUTH_FOR_BINARY_GITHUB_APP_KEY }}
+          repository: hyphengroup/go-cag
+      - uses: ./
+        with:
+          repo: hyphengroup/go-cag
+          tag: ${{ matrix.version }}
+          token: ${{ steps.generate_token.outputs.token }}
+      - run: cag --version
