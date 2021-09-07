@@ -63,7 +63,7 @@ async function run() {
             })
         }
 
-        let re;
+        let re: RegExp;
         const arch = core.getInput("arch");
         if (!arch) {
             re = new RegExp(`${osPlatform}.*${osPlatform == "windows" ? "zip" : "tar.gz"}`)
@@ -91,7 +91,14 @@ async function run() {
               accept: 'application/octet-stream'
             }
         );
-        let extractedPath = await tc.extractTar(binPath);
+
+        let extractArgs = core.getMultilineInput("extractArgs");
+        let extractedPath: string;
+        if (!extractArgs) {
+            extractedPath = await tc.extractTar(binPath);
+        } else {
+            extractedPath = await tc.extractTar(binPath, undefined, extractArgs);
+        }
         core.info(`Successfully extracted ${project} to ${extractedPath}`)
 
         core.addPath(extractedPath);

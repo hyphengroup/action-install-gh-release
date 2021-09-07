@@ -2,7 +2,9 @@
 
 This repository contains an action for use with GitHub Actions, which will install any GitHub release into your action environment:
 
-This is especially useful when installing arbitrary Go binaries. It can lookup the latest version, or download a specific tag
+This is especially useful when installing arbitrary Go binaries. It can lookup the latest version, or download a specific tag.
+
+only assets with `tar.gz` or `zip` extension are downloaded and `extractTar` is called on either.
 
 ## Usage
 
@@ -21,5 +23,14 @@ This is especially useful when installing arbitrary Go binaries. It can lookup t
   with: # Grab a specific tag
     repo: hyphengroup/private-repo
     tag: v0.1.0
+    token: ${{ secret.OTHER_GITHUB_TOKEN }}
+- name: Install private-binary
+  uses: hyphengroup/action-install-gh-release@v1.3.0
+  with: # Grab a specific tag
+    repo: hyphengroup/private-repo
+    tag: v0.1.0
+    extractArgs: |
+      xz
+      --strip-components 1
     token: ${{ secret.OTHER_GITHUB_TOKEN }}
 ```
