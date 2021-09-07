@@ -71,4 +71,7 @@ jobs:
           repo: hyphengroup/go-cag
           tag: ${{ matrix.version }}
           token: ${{ secrets.TEST_GITHUB_TOKEN }}
+          extractArgs: |
+            xz
+            --strip-components 1
       - run: cag --version
