@@ -81,7 +81,7 @@ async function run() {
             )
         }
 
-        const url = asset.browser_download_url
+        const url = asset.url
 
         core.info(`Downloading ${project} from ${url}`)
         const binPath = await tc.downloadTool(url,
