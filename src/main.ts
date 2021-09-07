@@ -9,7 +9,7 @@ async function run() {
     try {
 
         // set up auth/environment
-        const token = process.env['GITHUB_TOKEN']
+        const token = core.getInput("token");
         if (!token) {
             throw new Error(
                 `No GitHub token found`
@@ -22,7 +22,6 @@ async function run() {
             throw new Error(
                 `Repo was not specified`
             )
-            return;
         }
 
         const tag = core.getInput("tag");
@@ -79,7 +78,13 @@ async function run() {
         const url = asset.browser_download_url
 
         core.info(`Downloading ${project} from ${url}`)
-        const binPath = await tc.downloadTool(url);
+        const binPath = await tc.downloadTool(url,
+            undefined,
+            `token ${token}`,
+            {
+              accept: 'application/octet-stream'
+            }
+        );
         let extractedPath = await tc.extractTar(binPath);
         core.info(`Successfully extracted ${project} to ${extractedPath}`)
 

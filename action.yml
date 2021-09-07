@@ -9,8 +9,12 @@ inputs:
     description: "tag containing binary to install"
     default: latest
     required: true
+  token:
+    description: >
+      Personal access token (PAT) used to fetch release metadata or private binaries.
+    default: ${{ github.token }}
 branding:
-  icon: 'archive'  
+  icon: 'archive'
   color: 'green'
 runs:
   using: 'node12'

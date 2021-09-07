@@ -8,13 +8,18 @@ This is especially useful when installing arbitrary Go binaries. It can lookup t
 
 ```yaml
 - name: Install go-task
-  uses: jaxxstorm/action-install-gh-release@release/v1-alpha
+  uses: hyphengroup/action-install-gh-release@v1.3.0
   with: # Grab the latest version
     repo: go-task/task
 - name: Install tf2pulumi
-  uses: jaxxstorm/action-install-gh-release@release/v1-alpha
+  uses: hyphengroup/action-install-gh-release@v1.3.0
   with: # Grab a specific tag
     repo: pulumi/tf2pulumi
     tag: v0.7.0
+- name: Install private-binary
+  uses: hyphengroup/action-install-gh-release@v1.3.0
+  with: # Grab a specific tag
+    repo: hyphengroup/private-repo
+    tag: v0.1.0
+    token: ${{ secret.OTHER_GITHUB_TOKEN }}
 ```
-
