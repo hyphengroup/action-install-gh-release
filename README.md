@@ -31,6 +31,7 @@ only assets with `tar.gz` or `zip` extension are downloaded and `extractTar` is 
     tag: v0.1.0
     extractArgs: |
       xz
-      --strip-components 1
+      --strip-components
+      1
     token: ${{ secret.OTHER_GITHUB_TOKEN }}
 ```
