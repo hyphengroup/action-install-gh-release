@@ -76,6 +76,7 @@ async function run() {
         }
 
         let re = new RegExp(`${osPlatform}.*${osArch}.*${osPlatform == "windows" ? "zip" : "tar.gz"}`)
+        core.info(`Regex ${re}`)
         let asset = getReleaseUrl.data.assets.find(obj => {
             return re.test(obj.name)
         })

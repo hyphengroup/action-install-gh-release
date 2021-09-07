@@ -13,6 +13,7 @@ inputs:
     description: >
       Personal access token (PAT) used to fetch release metadata or private binaries.
     default: ${{ github.token }}
+    required: true
 branding:
   icon: 'archive'
   color: 'green'
