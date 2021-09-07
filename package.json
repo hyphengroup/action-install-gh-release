@@ -5,7 +5,8 @@
   "description": "Install a GitHub release binary in a GitHub Actions build environment",
   "main": "lib/main.js",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "package": "ncc build --source-map --license license.txt"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "@types/node": "^12.19.4",
+    "@vercel/ncc": "^0.30.0",
     "typescript": "^3.9.7"
   }
 }

@@ -93,3 +93,4 @@ typings/
 .idea
 
 node_modules/
+lib/
