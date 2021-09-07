@@ -16,7 +16,10 @@ inputs:
     required: true
   extractArgs:
     description: >
-      Arguments for extractTar() call, if omitted `xz` is used by cache-tools default.
+      Arguments for extracting release tar.
+    default: |
+      xz
+    required: true
   arch:
     description: >
       if provided, release binaries will be matched for `<plaform>.*<arch>.*<ext>`

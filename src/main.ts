@@ -93,12 +93,7 @@ async function run() {
         );
 
         let extractArgs = core.getMultilineInput("extractArgs");
-        let extractedPath: string;
-        if (!extractArgs) {
-            extractedPath = await tc.extractTar(binPath);
-        } else {
-            extractedPath = await tc.extractTar(binPath, undefined, extractArgs);
-        }
+        let extractedPath = await tc.extractTar(binPath, undefined, extractArgs);
         core.info(`Successfully extracted ${project} to ${extractedPath}`)
 
         core.addPath(extractedPath);
