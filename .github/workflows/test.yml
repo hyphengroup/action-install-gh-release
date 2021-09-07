@@ -24,7 +24,21 @@ jobs:
   tf2pulumi:
     strategy:
       matrix:
-        version: ["v0.7.0", "v0.8.0", "latest" ]
+        version: ["v0.7.0", "v0.8.0"]
+        runs-on: [ "ubuntu-latest", "macos-latest" ]
+    runs-on: ${{ matrix.runs-on }}
+    steps:
+      - uses: actions/checkout@v1
+      - run: npm ci
+      - run: npm run build
+      - uses: ./
+        with:
+          repo: pulumi/tf2pulumi
+          tag: ${{ matrix.version }}
+      - run: tf2pulumi version
+  tf2pulumi-latest:
+    strategy:
+      matrix:
         runs-on: [ "ubuntu-latest", "macos-latest" ]
     runs-on: ${{ matrix.runs-on }}
     steps:
@@ -35,5 +49,4 @@ jobs:
         with:
           repo: pulumi/tf2pulumi
           arch: x64
-          tag: ${{ matrix.version }}
       - run: tf2pulumi version
