@@ -73,5 +73,6 @@ jobs:
           token: ${{ secrets.TEST_GITHUB_TOKEN }}
           extractArgs: |
             xz
-            --strip-components 1
+            --strip-components
+            1
       - run: cag --version
