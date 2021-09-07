@@ -14,6 +14,10 @@ inputs:
       Personal access token (PAT) used to fetch release metadata or private binaries.
     default: ${{ github.token }}
     required: true
+  arch:
+    description: >
+      if provided, release binaries will be matched for <plaform>.*<arch>.*<ext>
+      else release binaries will only be matched by <platform>.*<ext>
 branding:
   icon: 'archive'
   color: 'green'

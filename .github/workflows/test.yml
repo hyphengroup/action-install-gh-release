@@ -34,5 +34,6 @@ jobs:
       - uses: ./
         with:
           repo: pulumi/tf2pulumi
+          arch: x64
           tag: ${{ matrix.version }}
       - run: tf2pulumi version

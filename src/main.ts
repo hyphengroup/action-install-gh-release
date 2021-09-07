@@ -49,18 +49,6 @@ async function run() {
                 return;
         }
 
-        let osArch = "";
-        switch (os.arch()) {
-            case "x64":
-                osArch = "x64";
-                break;
-            case "arm64":
-                osArch = "arm64";
-            default:
-                core.setFailed("Unsupported arch - $this action is only released for x64 or arm64");
-                return;
-        }
-
         let getReleaseUrl;
         if (tag === "latest") {
             getReleaseUrl = await octokit.repos.getLatestRelease({
@@ -75,8 +63,13 @@ async function run() {
             })
         }
 
-        let re = new RegExp(`${osPlatform}.*${osArch}.*${osPlatform == "windows" ? "zip" : "tar.gz"}`)
-        core.info(`Regex ${re}`)
+        let re;
+        const arch = core.getInput("arch");
+        if (!arch) {
+            re = new RegExp(`${osPlatform}.*${osPlatform == "windows" ? "zip" : "tar.gz"}`)
+        } else {
+            re = new RegExp(`${osPlatform}.*${arch}.*${osPlatform == "windows" ? "zip" : "tar.gz"}`)
+        }
         let asset = getReleaseUrl.data.assets.find(obj => {
             return re.test(obj.name)
         })
