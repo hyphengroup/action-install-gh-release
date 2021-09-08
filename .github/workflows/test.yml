@@ -76,3 +76,17 @@ jobs:
             --strip-components
             1
       - run: cag --version
+  sops:
+    strategy:
+      matrix:
+        version: ["v3.6.1", latest]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - run: npm ci
+      - run: npm run build
+      - uses: ./
+        with:
+          repo: mozilla/sops
+          tag: ${{ matrix.version }}
+      - run: sops --version
