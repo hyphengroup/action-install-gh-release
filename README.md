@@ -6,6 +6,8 @@ This is especially useful when installing arbitrary Go binaries. It can lookup t
 
 only assets with `tar.gz` or `zip` extension are downloaded and `extractTar` is called on either.
 
+For sops, use `mdgreenwald/mozilla-sops-action@v1.1.0`
+
 ## Usage
 
 ```yaml
