@@ -53,7 +53,7 @@ jobs:
   go-cag:
     strategy:
       matrix:
-        version: ["v2.0.0", "latest"]
+        version: [ "v2.1.1", "latest" ]
     runs-on: "ubuntu-latest"
     steps:
       - uses: actions/checkout@v1
@@ -71,8 +71,4 @@ jobs:
           repo: hyphengroup/go-cag
           tag: ${{ matrix.version }}
           token: ${{ steps.generate_token.outputs.token }}
-          extractArgs: |
-            xz
-            --strip-components
-            1
       - run: cag --version

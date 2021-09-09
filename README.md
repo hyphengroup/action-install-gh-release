@@ -22,13 +22,13 @@ For sops, use `mdgreenwald/mozilla-sops-action@v1.1.0`
     tag: v0.7.0
 - name: Install private-binary
   uses: hyphengroup/action-install-gh-release@v1.3.0
-  with: # Grab a specific tag
+  with:
     repo: hyphengroup/private-repo
     tag: v0.1.0
     token: ${{ secret.OTHER_GITHUB_TOKEN }}
-- name: Install private-binary
+- name: Install private-binary with paths in tar.gz
   uses: hyphengroup/action-install-gh-release@v1.3.0
-  with: # Grab a specific tag
+  with:
     repo: hyphengroup/private-repo
     tag: v0.1.0
     extractArgs: |
@@ -37,3 +37,5 @@ For sops, use `mdgreenwald/mozilla-sops-action@v1.1.0`
       1
     token: ${{ secret.OTHER_GITHUB_TOKEN }}
 ```
+
+combine with [tibdex/github-app-token](https://github.com/tibdex/github-app-token) to use GH Apps credentials to download instead of PAT.
